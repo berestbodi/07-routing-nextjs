@@ -47,7 +47,7 @@ export default function NotesClient() {
       <NoteList notes={data?.notes} />
 
       {modalState && (
-        <Modal onClose={() => setModalState(false)}>
+        <Modal>
           <NoteForm onClose={() => setModalState(false)} />
         </Modal>
       )}
