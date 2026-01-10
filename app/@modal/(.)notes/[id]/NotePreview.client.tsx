@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import Modal from "@/components/Modal/Modal";
+import css from "./NotePreview.module.css";
 
 export default function NotePreview({
   children,
@@ -14,5 +15,12 @@ export default function NotePreview({
     router.back();
   };
 
-  return <Modal onClose={handleClose}>{children}</Modal>;
+  return (
+    <Modal onClose={handleClose}>
+      {children}
+      <button className={css["button-close"]} onClick={handleClose}>
+        Close
+      </button>
+    </Modal>
+  );
 }
