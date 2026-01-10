@@ -11,8 +11,11 @@ const NotePreview = async ({ params }: Props) => {
 
   return (
     <Modal>
-      <h2>{note.title}</h2>
+      <div>
+        <h2>{note.title}</h2>
+      </div>
       <p>{note.content}</p>
+      <p>{new Date(note.createdAt).toLocaleDateString()}</p>
     </Modal>
   );
 };
