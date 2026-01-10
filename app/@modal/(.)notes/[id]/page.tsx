@@ -1,23 +1,23 @@
-import Modal from "@/components/Modal/Modal";
 import { fetchNoteById } from "@/lib/api";
+import NotePreview from "./NotePreview.client";
 
 type Props = {
   params: Promise<{ id: string }>;
 };
 
-const NotePreview = async ({ params }: Props) => {
+const ModalPage = async ({ params }: Props) => {
   const { id } = await params;
   const note = await fetchNoteById(id);
 
   return (
-    <Modal>
+    <NotePreview>
       <div>
         <h2>{note.title}</h2>
       </div>
       <p>{note.content}</p>
       <p>{new Date(note.createdAt).toLocaleDateString()}</p>
-    </Modal>
+    </NotePreview>
   );
 };
 
-export default NotePreview;
+export default ModalPage;

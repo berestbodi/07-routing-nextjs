@@ -10,14 +10,14 @@ import NoteList from "@/components/NoteList/NoteList";
 import Modal from "@/components/Modal/Modal";
 import NoteForm from "@/components/NoteForm/NoteForm";
 
-export default function NotesClient() {
+export default function NotesClient({ activeTag }: { activeTag?: string }) {
   const [currentPage, setCurrentPage] = useState(1);
   const [modalState, setModalState] = useState(false);
   const [query, setQuery] = useState("");
 
   const { data } = useQuery({
-    queryKey: ["notes", currentPage, query],
-    queryFn: () => fetchNotes(currentPage, query),
+    queryKey: ["notes", currentPage, query, activeTag],
+    queryFn: () => fetchNotes(currentPage, query, activeTag),
     placeholderData: keepPreviousData,
   });
 
@@ -47,7 +47,7 @@ export default function NotesClient() {
       <NoteList notes={data?.notes} />
 
       {modalState && (
-        <Modal>
+        <Modal onClose={() => setModalState(false)}>
           <NoteForm onClose={() => setModalState(false)} />
         </Modal>
       )}
